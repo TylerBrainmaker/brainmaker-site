@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brainmaker</title>
+<meta name="description" content="Brainmaker — more than artificial intelligence.">
+<meta property="og:title" content="Brainmaker">
+<meta property="og:description" content="More than artificial intelligence.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://brainmaker.co">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a0a;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .container {
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .logo {
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: clamp(2.4rem, 8vw, 5rem);
+    letter-spacing: 0.12em;
+    font-weight: 900;
+    margin-bottom: 1.6rem;
+    line-height: 1;
+  }
+
+  .logo .ai {
+    color: #00A651;
+  }
+
+  .tagline {
+    font-size: clamp(0.9rem, 2.2vw, 1.15rem);
+    color: #888;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin-bottom: 3rem;
+    line-height: 1.5;
+  }
+
+  .contact {
+    display: inline-block;
+    color: #00A651;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    padding: 0.7rem 2rem;
+    border: 1px solid #00A651;
+    transition: background 0.25s, color 0.25s;
+  }
+
+  .contact:hover {
+    background: #00A651;
+    color: #0a0a0a;
+  }
+
+  /* subtle grid background */
+  .grid-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  /* green glow behind logo */
+  .glow {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -55%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0,166,81,0.06) 0%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .legal {
+    position: fixed;
+    bottom: 1.2rem;
+    font-size: 0.7rem;
+    color: #333;
+    letter-spacing: 0.04em;
+    z-index: 2;
+  }
+
+  /* neural network corner graphic */
+  .neural-corner {
+    position: fixed;
+    bottom: -20px;
+    right: -20px;
+    width: 380px;
+    height: 380px;
+    z-index: 0;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  .neural-corner circle {
+    fill: #00A651;
+  }
+
+  .neural-corner line {
+    stroke: #00A651;
+    stroke-width: 1;
+  }
+
+  /* mirror in top-left, even fainter */
+  .neural-corner-tl {
+    position: fixed;
+    top: -40px;
+    left: -40px;
+    width: 300px;
+    height: 300px;
+    z-index: 0;
+    opacity: 0.06;
+    pointer-events: none;
+    transform: rotate(180deg);
+  }
+
+  .neural-corner-tl circle {
+    fill: #00A651;
+  }
+
+  .neural-corner-tl line {
+    stroke: #00A651;
+    stroke-width: 1;
+  }
+</style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="glow"></div>
+
+  <!-- neural network nodes - bottom right -->
+  <svg class="neural-corner" viewBox="0 0 380 380">
+    <!-- connections -->
+    <line x1="320" y1="350" x2="260" y2="280"/>
+    <line x1="260" y1="280" x2="300" y2="200"/>
+    <line x1="260" y1="280" x2="180" y2="260"/>
+    <line x1="300" y1="200" x2="340" y2="130"/>
+    <line x1="300" y1="200" x2="220" y2="170"/>
+    <line x1="180" y1="260" x2="220" y2="170"/>
+    <line x1="180" y1="260" x2="110" y2="220"/>
+    <line x1="220" y1="170" x2="160" y2="100"/>
+    <line x1="220" y1="170" x2="280" y2="90"/>
+    <line x1="340" y1="130" x2="280" y2="90"/>
+    <line x1="110" y1="220" x2="60" y2="150"/>
+    <line x1="110" y1="220" x2="160" y2="100"/>
+    <line x1="160" y1="100" x2="100" y2="50"/>
+    <line x1="280" y1="90" x2="210" y2="30"/>
+    <line x1="60" y1="150" x2="100" y2="50"/>
+    <line x1="350" y1="270" x2="260" y2="280"/>
+    <line x1="350" y1="270" x2="300" y2="200"/>
+    <line x1="370" y1="190" x2="300" y2="200"/>
+    <line x1="370" y1="190" x2="340" y2="130"/>
+    <!-- nodes -->
+    <circle cx="320" cy="350" r="4"/>
+    <circle cx="260" cy="280" r="5"/>
+    <circle cx="300" cy="200" r="4.5"/>
+    <circle cx="180" cy="260" r="4"/>
+    <circle cx="340" cy="130" r="3.5"/>
+    <circle cx="220" cy="170" r="5"/>
+    <circle cx="110" cy="220" r="3.5"/>
+    <circle cx="160" cy="100" r="4"/>
+    <circle cx="280" cy="90" r="3.5"/>
+    <circle cx="60" cy="150" r="3"/>
+    <circle cx="100" cy="50" r="3"/>
+    <circle cx="210" cy="30" r="3"/>
+    <circle cx="350" cy="270" r="3.5"/>
+    <circle cx="370" cy="190" r="3"/>
+  </svg>
+
+  <!-- faint mirror in top left -->
+  <svg class="neural-corner-tl" viewBox="0 0 380 380">
+    <line x1="320" y1="350" x2="260" y2="280"/>
+    <line x1="260" y1="280" x2="300" y2="200"/>
+    <line x1="260" y1="280" x2="180" y2="260"/>
+    <line x1="300" y1="200" x2="340" y2="130"/>
+    <line x1="300" y1="200" x2="220" y2="170"/>
+    <line x1="180" y1="260" x2="220" y2="170"/>
+    <line x1="220" y1="170" x2="160" y2="100"/>
+    <line x1="220" y1="170" x2="280" y2="90"/>
+    <line x1="340" y1="130" x2="280" y2="90"/>
+    <line x1="110" y1="220" x2="160" y2="100"/>
+    <line x1="180" y1="260" x2="110" y2="220"/>
+    <circle cx="320" cy="350" r="4"/>
+    <circle cx="260" cy="280" r="5"/>
+    <circle cx="300" cy="200" r="4.5"/>
+    <circle cx="180" cy="260" r="4"/>
+    <circle cx="340" cy="130" r="3.5"/>
+    <circle cx="220" cy="170" r="5"/>
+    <circle cx="110" cy="220" r="3.5"/>
+    <circle cx="160" cy="100" r="4"/>
+    <circle cx="280" cy="90" r="3.5"/>
+  </svg>
+  <div class="container">
+    <div class="logo">BR<span class="ai">AI</span>NMAKER</div>
+    <p class="tagline">More than artificial intelligence.</p>
+    <a href="mailto:hello@brainmaker.co" class="contact">GET IN TOUCH</a>
+  </div>
+  <div class="legal">&copy; 2026 Brainmaker LLC &middot; Washington, DC</div>
+</body>
+</html>
